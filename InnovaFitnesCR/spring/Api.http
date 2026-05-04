@@ -1,0 +1,218 @@
+@host = http://localhost:8080
+@token =eyJhbGciOiJIUzI1NiJ9.eyJzdWIiOiJhZG1pbiIsImlhdCI6MTc3NzMyMDc1MywiZXhwIjoxNzc3MzI0MzUzfQ.GK7pDTopHRvzTPErOedru12V9A2RkCixm_dxbJnbrLo
+POST {{host}}/auth/login
+Content-Type: application/json
+
+{
+  "username": "admin",
+  "password":"admin"
+}
+
+### USUARIOS
+
+### Obtener todos
+GET {{host}}/usuarios
+Authorization: Bearer {{token}}
+
+### Obtener por ID
+GET {{host}}/usuarios/1
+Authorization: Bearer {{token}}
+
+### Crear
+POST {{host}}/usuarios
+Authorization: Bearer {{token}}
+Content-Type: application/json
+
+{
+  "nombre": "Mauricio",
+  "email": "mauricio@example.com",
+  "contrasena": "123",
+  "rol": "ROLE_ADMIN", 
+  "telefono": "8888-8888"
+}
+
+### Actualizar
+PUT {{host}}/usuarios/3
+Authorization: Bearer {{token}}
+Content-Type: application/json
+
+{
+  "nombre": "Mauricio",
+  "email": "mauricio@example.com",
+  "contrasena": "123",
+  "rol": "ROLE_USER", 
+  "telefono": "8888-8888"
+}
+
+### Eliminar
+DELETE {{host}}/usuarios/1
+Authorization: Bearer {{token}}
+
+
+###  CLIENTES
+
+### Obtener todos
+GET {{host}}/clientes
+Authorization: Bearer {{token}}
+
+### Obtener por ID
+GET {{host}}/clientes/1
+Authorization: Bearer {{token}}
+
+### Crear
+POST {{host}}/clientes
+Authorization: Bearer {{token}}
+Content-Type: application/json
+
+{
+  "peso": 70.5,
+  "edad": 30,
+  "composicionCorporal": "20% grasa, 40% músculo, 40% agua",
+  "mensualidad": 50.0,
+  "altura": 1.75,
+  "usuario": {
+    "id": 1
+  }
+}
+
+### Actualizar
+PUT {{host}}/clientes/1
+Authorization: Bearer {{token}}
+Content-Type: application/json
+
+{
+  "peso": 70.5,
+  "edad": 30,
+  "composicionCorporal": "20% grasa, 40% músculo, 40% agua",
+  "mensualidad": 50.0,
+    "altura": 1.95,
+  "usuario": {
+    "id": 2
+  }
+}
+
+### Eliminar
+DELETE {{host}}/clientes/2
+Authorization: Bearer {{token}}
+
+
+###  RUTINAS
+
+### Obtener todas
+GET {{host}}/rutinas
+Authorization: Bearer {{token}}
+
+### Obtener por ID
+GET {{host}}/rutinas/3
+Authorization: Bearer {{token}}
+
+### Crear
+POST {{host}}/rutinas
+Authorization: Bearer {{token}}
+Content-Type: application/json
+
+{
+  "nombre": "Rutina de hipertrofia",
+  "descripcion": "Entrenamiento para hipertrofia",
+  "cantidadDias": 5,
+  "categoria": "Hola",
+  "nivelDificultad": 2
+}
+
+### Actualizar
+PUT {{host}}/rutinas/1
+Authorization: Bearer {{token}}
+Content-Type: application/json
+
+{
+ "nombre": "Rutina de hipertrofia",
+ "descripcion": "Entrenamiento para hipertrofia",
+  "cantidadDias": 5,
+  "categoria": "Hola",
+    "nivelDificultad": 2
+}
+
+### Eliminar
+DELETE {{host}}/rutinas/1
+Authorization: Bearer {{token}}
+
+
+### EJERCICIOS
+
+### Obtener todos
+GET {{host}}/ejercicios
+Authorization: Bearer {{token}}
+
+### Obtener por ID
+GET {{host}}/ejercicios/2
+Authorization: Bearer {{token}}
+
+### Crear
+POST {{host}}/ejercicios
+Authorization: Bearer {{token}}
+Content-Type: application/json
+
+{
+  "nombre": "Sentadilla",
+  "descripcion": "Ejercicio de piernas",
+  "imagenUrl": "https://example.com/sentadilla.jpg",
+  "categoria": "hoka"
+}
+
+### Actualizar
+PUT {{host}}/ejercicios/2
+Authorization: Bearer {{token}}
+Content-Type: application/json
+
+{
+    "nombre": "Sentadilla",
+  "descripcion": "Ejercicio de piernas",
+    "imagenUrl": "https://example.com/sentadilla.jpg",
+  "categoria": "hola"
+}
+
+### Eliminar
+DELETE {{host}}/ejercicios/1
+Authorization: Bearer {{token}}
+
+
+### Obtener todas las relaciones RutinaEjercicio
+GET {{host}}/rutina-ejercicios
+Authorization: Bearer {{token}}
+
+### Obtener una relación por ID
+GET {{host}}/rutina-ejercicios/1
+Authorization: Bearer {{token}}
+
+### Crear una nueva relación Rutina ↔ Ejercicio
+POST {{host}}/rutina-ejercicios
+Authorization: Bearer {{token}}
+Content-Type: application/json
+
+{
+  "ordenEjercicio": 1,
+  "series": 4,
+  "repeticiones": 12,
+  "descanso": "90s",
+  "rutina": { "id": 1 },
+  "ejercicio": { "id": 2 }
+}
+
+### Actualizar una relación existente
+PUT {{host}}/rutina-ejercicios/1
+Authorization: Bearer {{token}}
+Content-Type: application/json
+
+{
+  "ordenEjercicio": 2,
+  "series": 3,
+  "repeticiones": 10,
+  "descanso": "60s",
+  "rutina": { "id": 1 },
+  "ejercicio": { "id": 2 }
+}
+
+### Eliminar una relación por ID
+DELETE {{host}}/rutina-ejercicios/1
+Authorization: Bearer {{token}}
+
